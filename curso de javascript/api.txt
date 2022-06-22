@@ -1,0 +1,8 @@
+{
+
+"aprobados":"80%",
+"desaprobados":"60%"
+
+
+}
+
