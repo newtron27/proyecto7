@@ -1905,33 +1905,38 @@ const Zona_arrastre=document.querySelector('.zona')
 const galeria=document.querySelector('.galeria')
 
 
+
 Zona_arrastre.addEventListener('dragover',(e)=>{
 cambiostyle(e.target,'blue')
 e.preventDefault();
 // alert('hola')
 })
- const cambiostyle=(objet,color)=>{
-  objet.style.color=`${color}`;
+const cambiostyle=(objet,color)=>{
+objet.style.color=`${color}`;
 
 }
 
 Zona_arrastre.addEventListener('drop',(e)=>{
-
-
-  console.log(e)
-  cargarimagen(e.dataTransfer.files[0])
-  e.preventDefault();
+console.log(e)
+cargarimagen(e.dataTransfer.files[0])
+e.preventDefault();
   })
   
-  function cargarimagen(arch){
+function cargarimagen(arch){
 const object= new FileReader();
 object.readAsDataURL(arch)
 
-let url=URL.createObjectURL(arch)
-let imagen=document.createElement('IMG')
-imagen.classList.add('imagen')
-imagen.setAttribute('src',url)
-galeria.appendChild(imagen)
+object.addEventListener('load',(e)=>{
+
+  let url=URL.createObjectURL(arch)
+  let imagen=document.createElement('IMG')
+  imagen.classList.add('imagen')
+  imagen.setAttribute('src',url)
+  galeria.appendChild(imagen)
+
+
+})
+
   }
 
 
