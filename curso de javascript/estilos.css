@@ -474,3 +474,8 @@ color:grey;
 max-width:700px;
 display:flex;
 }
+.imagen{
+width:400px;
+height:200px;
+margin:2em;
+}

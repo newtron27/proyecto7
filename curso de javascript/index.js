@@ -1929,7 +1929,7 @@ object.readAsDataURL(arch)
 
 let url=URL.createObjectURL(arch)
 let imagen=document.createElement('IMG')
-imagen.classList.add('img')
+imagen.classList.add('imagen')
 imagen.setAttribute('src',url)
 galeria.appendChild(imagen)
   }
