@@ -1922,24 +1922,33 @@ cargarimagen(e.dataTransfer.files[0])
 e.preventDefault();
   })
   
+
 function cargarimagen(arch){
 const object= new FileReader();
-object.readAsDataURL(arch)
+// object.readAsDataURL(arch)//para leer imagenes
+object.readAsArrayBuffer(arch)//para leer videos
+
+
 
 object.addEventListener('load',(e)=>{
-
-  let url=URL.createObjectURL(arch)
-  let imagen=document.createElement('IMG')
+let video = new Blob([new Uint8Array(e.currentTarget.result)], {type:'video/mp4'})
+// let video = new Blob(e.currentTarget.result)
+  let url=URL.createObjectURL(video) //para crear una URL
+  let imagen=document.createElement('VIDEO')
+   imagen.setAttribute('src',url) 
+   let DIV=document.createElement('SPAN').textContent='PLAY';
+ 
   imagen.classList.add('imagen')
-  imagen.setAttribute('src',url)
+
+
   galeria.appendChild(imagen)
+  galeria.innerHTML+=DIV;
+
 
 
 })
 
   }
-
-
 
 
 // PARA CONSULTAR LOS METODOS O PROTOTIPOS DE LECTURA 
