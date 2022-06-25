@@ -1901,56 +1901,119 @@ btnINFO.addEventListener('click', obtenerinfo)
 
 
 
-const Zona_arrastre=document.querySelector('.zona')
-const galeria=document.querySelector('.galeria')
+// const Zona_arrastre=document.querySelector('.zona')
+// const galeria=document.querySelector('.galeria')
 
 
 
-Zona_arrastre.addEventListener('dragover',(e)=>{
-cambiostyle(e.target,'blue')
-e.preventDefault();
-// alert('hola')
-})
-const cambiostyle=(objet,color)=>{
-objet.style.color=`${color}`;
+// Zona_arrastre.addEventListener('dragover',(e)=>{
+// cambiostyle(e.target,'blue')
+// e.preventDefault();
+// // alert('hola')
+// })
+// const cambiostyle=(objet,color)=>{
+// objet.style.color=`${color}`;
 
-}
+// }
 
-Zona_arrastre.addEventListener('drop',(e)=>{
-console.log(e)
-cargarimagen(e.dataTransfer.files[0])
-e.preventDefault();
-  })
+// Zona_arrastre.addEventListener('drop',(e)=>{
+// console.log(e)
+// cargarimagen(e.dataTransfer.files[0])
+// e.preventDefault();
+//   })
   
 
-function cargarimagen(arch){
-const object= new FileReader();
-// object.readAsDataURL(arch)//para leer imagenes
-object.readAsArrayBuffer(arch)//para leer videos
+// function cargarimagen(arch){
+// const object= new FileReader();
+// // object.readAsDataURL(arch)//para leer imagenes
+// object.readAsArrayBuffer(arch)//para leer videos
 
 
 
-object.addEventListener('load',(e)=>{
-let video = new Blob([new Uint8Array(e.currentTarget.result)], {type:'video/mp4'})
-// let video = new Blob(e.currentTarget.result)
-  let url=URL.createObjectURL(video) //para crear una URL
-  let imagen=document.createElement('VIDEO')
-   imagen.setAttribute('src',url) 
-   let DIV=document.createElement('SPAN').textContent='PLAY';
+// object.addEventListener('load',(e)=>{
+// let video = new Blob([new Uint8Array(e.currentTarget.result)], {type:'video/mp4'})
+// // let video = new Blob(e.currentTarget.result)
+//   let url=URL.createObjectURL(video) //para crear una URL
+//   let imagen=document.createElement('VIDEO')
+//    imagen.setAttribute('src',url) 
+//   imagen.classList.add('imagen')
+//   galeria.appendChild(imagen)
+//   imagen.play()
  
-  imagen.classList.add('imagen')
 
+  
+// })
 
-  galeria.appendChild(imagen)
-  galeria.innerHTML+=DIV;
-
-
-
-})
-
-  }
+//   }
 
 
 // PARA CONSULTAR LOS METODOS O PROTOTIPOS DE LECTURA 
 // objetolectura= new FileReader();
 // console.log(objetolectura)
+
+
+
+
+// //////////////////////////////
+///////////IndexDB////////////////
+////
+
+//------el object -store tiene dificultades
+// const indexedDB=window.indexedDB;
+// // creamos el objeto de la base de dato
+// if(indexedDB){//preguntamos si el objeto exite
+//   let db //una variable que nos gurdara el resultado 
+// const request=indexedDB.open("nombres",1)//cramos la base dato con el metodo anterior
+
+// request.onsuccess=()=>{/// creamos una funcion anonima  con el evento que nos dice si la petiicion se ejecuto
+//   db=request.result; //
+//   console.log('OPEN',db)
+
+  
+//   }
+// request.upgradeneeded=()=>{
+// db=request.result;
+// console.log('Create',db)
+// const object= db.createObjectStore('nombre1')
+// // const objectStore2=db.createObjectStore('nombre2')
+
+// }
+
+// request.onerror=(error)=>{
+//   console.log('Error',error)
+
+//   }
+// }
+
+
+// //////////////////////
+////////api matchMedia///////////////////
+//////////////////////////
+////////////////////////
+
+
+// const mq= matchMedia('(max-width: 500px)');
+// const cajita= document.querySelector(".caja");
+// // console.log(match)
+
+// mq.addEventListener('change',()=>{
+// if(mq.matches)cajita.classList.replace('caja','StyleNew')
+// else if(cajita.className='caja') cajita.classList.replace('StyleNew','caja');
+// })
+
+
+
+// ////////////////////////////
+///////Intersection Observer//////
+////////////////////////////////
+
+
+const caja=document.querySelector('.caja')
+
+const verfyvisibility=(entries)=>{
+const entry = entries[0];
+console.log(entry)
+
+}
+const observador = new IntersectionObserver(verfyvisibility)
+observador.observe(caja)
