@@ -517,10 +517,21 @@ text-align:start;
 text-align:left;
 margin-bottom:3em;
     }
+
+    @keyframes opacidad {
+        from{
+
+            opacity:0;
+        }
+        to{
+      opacity:1;
+
+        }
+    }
 .publicacion{
  /* padding:2em; */
-
-
+animation:opacidad 2s forwards 0.5s;
+margin-top: 5em;
 }
 .publicacion h3{
     color:rgb(95, 148, 228);

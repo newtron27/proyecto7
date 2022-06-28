@@ -1538,29 +1538,29 @@ const datos=[
 //////////////////////////////////////////////////////////
   // trayendo informacion de una api de manera asincrona////
 // ///////////////////////////////////////////////////
- const conten=document.querySelector('.titulo1')
+//  const conten=document.querySelector('.titulo1')
 
-// conten('.contendorONE').remove();
+// // conten('.contendorONE').remove();
 
-const btnINFO=document.querySelector('.btn_info')
-async function obtenerinfo(){
+// const btnINFO=document.querySelector('.btn_info')
+// async function obtenerinfo(){
  
-const conten=document.querySelector('.contentTotal')
+// const conten=document.querySelector('.contentTotal')
 
-try {
- const conectionDATABASE= await fetch('api.txt');
-const tranformardatos= await conectionDATABASE.json();
+// try {
+//  const conectionDATABASE= await fetch('api.txt');
+// const tranformardatos= await conectionDATABASE.json();
 
-conten.querySelector('.promovido').innerHTML=tranformardatos.aprobados;
-conten.querySelector('.reprobado').innerHTML=tranformardatos.desaprobados;
-} catch (error) {
-  conten.querySelector('.promovido').innerHTML='data no econtrada';
-conten.querySelector('.reprobado').innerHTML='data no encontrada';
-}
+// conten.querySelector('.promovido').innerHTML=tranformardatos.aprobados;
+// conten.querySelector('.reprobado').innerHTML=tranformardatos.desaprobados;
+// } catch (error) {
+//   conten.querySelector('.promovido').innerHTML='data no econtrada';
+// conten.querySelector('.reprobado').innerHTML='data no encontrada';
+// }
 
-}
+// }
 
-btnINFO.addEventListener('click', obtenerinfo)
+// btnINFO.addEventListener('click', obtenerinfo)
 
 // const fecha=new Date();
 // console.log(fecha.getYear()+1900)
@@ -2039,71 +2039,116 @@ btnINFO.addEventListener('click', obtenerinfo)
 // console.log(IntersectionObserver())
 
 
-const contenedor=document.querySelector('.content')
+// const contenedor=document.querySelector('.content')
 
-contador=0;
+// contador=0;
 
-const crearcomentario=(name,public)=>{
-//  const fragmento=document.createDocumentFragment();
-contador++
-const publicacion=document.createElement('DIV')
-const comentarios= document.createElement('DIV')
+// const crearcomentario=(name,public)=>{
+// //  const fragmento=document.createDocumentFragment();
+// contador++
+// const publicacion=document.createElement('DIV')
+// const comentarios= document.createElement('DIV')
 
-const nombre=document.createElement('H3');
-const text=document.createElement('P');
-const btn=document.createElement('INPUT')
-const comentar=document.createElement('INPUT');
+// const nombre=document.createElement('H3');
+// const text=document.createElement('P');
+// const btn=document.createElement('INPUT')
+// const comentar=document.createElement('INPUT');
 
-publicacion.classList.add('publicacion');
-comentar.classList.add('comentario')
+// publicacion.classList.add('publicacion');
+// comentar.classList.add('comentario')
 
-btn.type='submit';
-btn.value='enviar';
-comentar.setAttribute('placeholder','ingresa un comentario');
+// btn.type='submit';
+// btn.value='enviar';
+// comentar.setAttribute('placeholder','ingresa un comentario');
 
-nombre.textContent=name;
-text.textContent=public;
+// nombre.textContent=name;
+// text.textContent=public;
 
-comentarios.appendChild(comentar)
-comentarios.appendChild(btn)
+// comentarios.appendChild(comentar)
+// comentarios.appendChild(btn)
 
-publicacion.appendChild(nombre)
-publicacion.appendChild(text)
-publicacion.appendChild(comentarios)
+// publicacion.appendChild(nombre)
+// publicacion.appendChild(text)
+// publicacion.appendChild(comentarios)
 
-return publicacion
-}
-
-
-
-
-const cargarmaspublic=(entry)=>{
-  if(entry[0].isIntersecting)cargardatos(4)
-    }
-
-  const observador = new IntersectionObserver(cargarmaspublic,opcion)
+// return publicacion
+// }
 
 
 
 
+// const cargarmaspublic=(entry)=>{
+//   if(entry[0].isIntersecting)cargardatos(4)
+//     }
 
-const cargardatos = async (num)=>{
+//   const observador = new IntersectionObserver(cargarmaspublic)
 
-const publicacion= await fetch('info.txt');
-const conten= await publicacion.json() ;
-const transformacion =conten.content;
-const fragmento=document.createDocumentFragment() 
 
-for(i=0; i<num; i++){
-  // (transformacion[1].nombre, transformacion[1].publicacion)
-  const nuevaPublicacion=crearcomentario(transformacion[contador].nombre,transformacion[contador].publicacion)
-   fragmento.appendChild(nuevaPublicacion)
-    if(i==num-1)observador.observe(nuevaPublicacion)
 
-  
-}
-contenedor.appendChild(fragmento)
 
-}
+
+// const cargardatos = async (num)=>{
+
+// const publicacion= await fetch('info.txt');
+// const conten= await publicacion.json() ;
+// const transformacion= await conten.content;
+// const fragmento=document.createDocumentFragment() 
+
+// for(i=0; i<num; i++){
  
-cargardatos(1)
+//   // (transformacion[1].nombre, transformacion[1].publicacion)
+//   const nuevaPublicacion=crearcomentario(transformacion[contador].nombre,transformacion[contador].publicacion)
+//    fragmento.appendChild(nuevaPublicacion)
+//     if(i==num-1)observador.observe(nuevaPublicacion)
+  
+//    }
+//   //  else
+//   //   let fin=document.createElement('h1')
+//   //   fin.textContent=`No Hay mas publicaciones por mostrar`;
+//   //   fragmento.appendChild(fin)
+//   //   break;
+
+// contenedor.appendChild(fragmento)
+
+// }
+ 
+// cargardatos(1)
+
+
+
+/////////////////////////
+// api notificaction////
+//////////////////////////
+/////////
+// ///////////////////
+
+// if('notification'in window){
+// console.log('la notificacion no existe ');
+// }
+
+// Notification.requestPermission(()=>{
+// if(Notification.permission=='granted'){
+
+//   new Notification('hola')
+// }
+
+// })
+
+///////////////web worked///////////
+/////////////////////////////////////
+////////////////////////////////////
+////////////////////////////////
+
+
+
+const workers=new Worker("workers.js")
+// console.log(workers)
+
+const btn=document.querySelector('.btn')
+
+const cargardatos=()=>{
+
+workers.postMessage(true)
+
+}
+btn.addEventListener('click',cargardatos)
