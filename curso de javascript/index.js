@@ -2008,12 +2008,102 @@ btnINFO.addEventListener('click', obtenerinfo)
 ////////////////////////////////
 
 
-const caja=document.querySelector('.caja')
+// const caja1=document.querySelector('.caja1')
+// const caja2=document.querySelector('.caja2')
+// const caja3=document.querySelector('.caja3')
+// const motor=document.querySelector('.motor')
 
-const verfyvisibility=(entries)=>{
-const entry = entries[0];
-console.log(entry)
+// const verfyvisibility=(entries)=>{
+// // const entry = entries[0];
+// for(const entry of entries) {
+// if(entry.isIntersecting)
+// entry.target.classList.toggle('style')
+
+// // console.log('se esta visualizando ',entry.target.textContent)
+// }
+// }
+
+// const option={
+
+
+// }
+
+// const observador = new IntersectionObserver(verfyvisibility,option)
+// // for(const caja of cajas){
+// observador.observe(caja1)
+// observador.observe(caja2)
+// observador.observe(caja3)
+
+// }
+// const observador2 = new ;
+// console.log(IntersectionObserver())
+
+
+const contenedor=document.querySelector('.content')
+
+contador=0;
+
+const crearcomentario=(name,public)=>{
+//  const fragmento=document.createDocumentFragment();
+contador++
+const publicacion=document.createElement('DIV')
+const comentarios= document.createElement('DIV')
+
+const nombre=document.createElement('H3');
+const text=document.createElement('P');
+const btn=document.createElement('INPUT')
+const comentar=document.createElement('INPUT');
+
+publicacion.classList.add('publicacion');
+comentar.classList.add('comentario')
+
+btn.type='submit';
+btn.value='enviar';
+comentar.setAttribute('placeholder','ingresa un comentario');
+
+nombre.textContent=name;
+text.textContent=public;
+
+comentarios.appendChild(comentar)
+comentarios.appendChild(btn)
+
+publicacion.appendChild(nombre)
+publicacion.appendChild(text)
+publicacion.appendChild(comentarios)
+
+return publicacion
+}
+
+
+
+
+const cargarmaspublic=(entry)=>{
+  if(entry[0].isIntersecting)cargardatos(4)
+    }
+
+  const observador = new IntersectionObserver(cargarmaspublic,opcion)
+
+
+
+
+
+const cargardatos = async (num)=>{
+
+const publicacion= await fetch('info.txt');
+const conten= await publicacion.json() ;
+const transformacion =conten.content;
+const fragmento=document.createDocumentFragment() 
+
+for(i=0; i<num; i++){
+  // (transformacion[1].nombre, transformacion[1].publicacion)
+  const nuevaPublicacion=crearcomentario(transformacion[contador].nombre,transformacion[contador].publicacion)
+   fragmento.appendChild(nuevaPublicacion)
+    if(i==num-1)observador.observe(nuevaPublicacion)
+
+  
+}
+contenedor.appendChild(fragmento)
 
 }
-const observador = new IntersectionObserver(verfyvisibility)
-observador.observe(caja)
+ 
+cargardatos(1)
